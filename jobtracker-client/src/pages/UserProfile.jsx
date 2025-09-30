@@ -54,6 +54,9 @@ function UserProfile() {
           <button style={button} onClick={() => navigate('/dashboard')}>
             ⬅️ Back to Dashboard
           </button>
+          <button style={button} onClick={() => navigate('/edit-profile')}>
+            ✏️ Edit Profile
+          </button>
           <LogoutButton />
         </div>
       </div>
@@ -72,6 +75,9 @@ function UserProfile() {
         <p><strong>About:</strong> {user.about || '—'}</p>
         <p><strong>Experience:</strong> {user.experience || '—'}</p>
         <p><strong>Joined On:</strong> {user.createdAt?.split('T')[0]}</p>
+        <p><strong>Location:</strong> {user.place || '—'}</p>
+        <p><strong>Company/University:</strong> {user.company || '—'}</p>
+
       </div>
     </div>
   );

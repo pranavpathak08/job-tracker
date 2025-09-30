@@ -80,6 +80,19 @@ function Register() {
         </button>
       </form>
 
+      <p style={{ textAlign: 'center', marginTop: '1.5rem' }}>
+        <span
+          onClick={() => navigate('/login')}
+          style={{
+            color: '#3b82f6',
+            cursor: 'pointer',
+            textDecoration: 'none'
+          }}
+        >
+          Already have an account? Sign in
+        </span>
+      </p>
+
       {message && (
         <p style={{ textAlign: 'center', color: '#f87171' }}>{message}</p>
       )}

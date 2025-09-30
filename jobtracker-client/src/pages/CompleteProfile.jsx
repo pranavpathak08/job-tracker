@@ -53,7 +53,7 @@ function CompleteProfile() {
       <h2 style={{ textAlign: 'center' }}>Complete Your Profile</h2>
 
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', maxWidth: '500px', margin: '2rem auto' }}>
-        <input type="text" name="currentlyDoing" placeholder="Most Recent Job / Student" value={formData.currentlyDoing} onChange={handleChange} />
+        <input type="text" name="currentlyDoing" placeholder="Current Status" value={formData.currentlyDoing} onChange={handleChange} />
         <textarea name="about" placeholder="About You" value={formData.about} onChange={handleChange}></textarea>
         <textarea name="experience" placeholder="Experience" value={formData.experience} onChange={handleChange}></textarea>
         <input type="text" name="place" placeholder="State, Country" value={formData.place} onChange={handleChange} />
