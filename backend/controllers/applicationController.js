@@ -39,7 +39,7 @@ exports.applyToJob = async (req, res) => {
       .input('jobId', sql.Int, jobId)
       .input('status', sql.VarChar, 'Applied')
       .input('resumePath', sql.NVarChar, resumePath)
-      .query(`INSERT INTO Applications (userId, jobId, status) VALUES (@userId, @jobId, @status)`);
+      .query(`INSERT INTO Applications (userId, jobId, status, resumePath) VALUES (@userId, @jobId, @status, @resumePath)`);
 
     res.status(201).json({ message: 'Application submitted successfully' });
 
@@ -95,7 +95,8 @@ exports.getApplicantsByJob = async (req, res) => {
           u.name AS applicantName,
           u.email,
           a.status,
-          a.appliedAt
+          a.appliedAt,
+          a.resumePath
         FROM Applications a
         JOIN Users u ON a.userId = u.id
         WHERE a.jobId = @jobId
