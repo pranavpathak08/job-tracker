@@ -26,11 +26,19 @@ exports.applyToJob = async (req, res) => {
       return res.status(400).json({ message: 'You have already applied to this job' });
     }
 
+    //Getting resume file path
+    const resumePath = req.file ? req.file.path : null;
+
+    if (!resumePath) {
+      return res.status(400).json({ message: "Resume is required."})
+    }
+
     // Insert new application
     await pool.request()
       .input('userId', sql.Int, userId)
       .input('jobId', sql.Int, jobId)
       .input('status', sql.VarChar, 'Applied')
+      .input('resumePath', sql.NVarChar, resumePath)
       .query(`INSERT INTO Applications (userId, jobId, status) VALUES (@userId, @jobId, @status)`);
 
     res.status(201).json({ message: 'Application submitted successfully' });
