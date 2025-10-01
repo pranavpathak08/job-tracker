@@ -1,50 +1,74 @@
 /* View Applicants page styles */
 
 .applicants-container {
-    padding: 2rem;
-  }
-  
-  .applicants-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-bottom: 1.5rem;
-  }
-  
-  .applicants-header h2 {
-    margin-bottom: 0.3rem;
-  }
-  
-  .applicants-header h4 {
-    margin: 0;
-    font-weight: normal;
-    color: #ccc;
-  }
-  
-  .applicants-job-title {
-    color: #a78bfa;
-  }
-  
-  .applicants-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-  }
-  
-  .applicants-table th,
-  .applicants-table td {
-    padding: 0.75rem;
-    border: 1px solid #333954;
-    text-align: left;
-  }
-  
-  .applicants-table th {
-    background-color: #2f2f46;
-    color: #ffffff;
-  }
-  
-  .applicants-table td {
-    background-color: #2b2b3c;
-    color: #f1f1f1;
-  }
+  padding: 2rem;
+}
+
+.applicants-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.applicants-header h2 {
+  margin-bottom: 0.3rem;
+}
+
+.applicants-header h4 {
+  margin: 0;
+  font-weight: normal;
+  color: #ccc;
+}
+
+.applicants-job-title {
+  color: #a78bfa;
+}
+
+.applicants-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  overflow-x: auto;
+  display: block;
+}
+
+.applicants-table thead,
+.applicants-table tbody {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.applicants-table th,
+.applicants-table td {
+  padding: 0.75rem;
+  border: 1px solid #333954;
+  text-align: left;
+}
+
+.applicants-table th {
+  background-color: #2f2f46;
+  color: #ffffff;
+}
+
+.applicants-table td {
+  background-color: #2b2b3c;
+  color: #f1f1f1;
+}
+
+.view-resume-btn {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  background-color: #4f46e5;
+  color: #fff;
+  border: 1px solid #4f46e5;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.view-resume-btn:hover {
+  background-color: #4338ca;
+}

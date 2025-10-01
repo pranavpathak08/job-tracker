@@ -46,3 +46,7 @@ out/
 
 # Windows / Mac system files
 Desktop.ini
+
+
+# ignore uploaded resumes
+/uploads

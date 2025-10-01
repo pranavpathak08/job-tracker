@@ -42,6 +42,16 @@ function ViewApplicants() {
     }
   };
 
+  const handleViewResume = (resumePath) => {
+    if (!resumePath) {
+      alert('No resume uploaded for this applicant');
+      return;
+    }
+    // Open resume in new tab
+    const resumeUrl = `http://localhost:5000/${resumePath}`;
+    window.open(resumeUrl, '_blank');
+  };
+
   useEffect(() => {
     fetchApplicants();
   }, [jobId]);
@@ -68,8 +78,10 @@ function ViewApplicants() {
             <tr>
               <th>User ID</th>
               <th>Name</th>
+              <th>Email</th>
               <th>Status</th>
               <th>Change Status</th>
+              <th>Resume</th>
               <th>Applied At</th>
             </tr>
           </thead>
@@ -78,6 +90,7 @@ function ViewApplicants() {
               <tr key={app.applicationId}>
                 <td>{app.userId || 'N/A'}</td>
                 <td>{app.applicantName}</td>
+                <td>{app.email}</td>
                 <td>{app.status}</td>
                 <td>
                   <select
@@ -91,6 +104,18 @@ function ViewApplicants() {
                     <option value="Offered">Offered</option>
                     <option value="Rejected">Rejected</option>
                   </select>
+                </td>
+                <td>
+                  {app.resumePath ? (
+                    <button 
+                      className="button view-resume-btn"
+                      onClick={() => handleViewResume(app.resumePath)}
+                    >
+                      View Resume
+                    </button>
+                  ) : (
+                    <span style={{ color: '#9ca3af' }}>No Resume</span>
+                  )}
                 </td>
                 <td>{app.appliedAt?.split('T')[0]}</td>
               </tr>
