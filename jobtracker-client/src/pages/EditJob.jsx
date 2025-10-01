@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import LogoutButton from '../components/LogoutButton';
+import '../styles/common.css';
 
 function EditJob() {
   const { jobId } = useParams();
@@ -64,28 +65,16 @@ function EditJob() {
     }
   };
 
-  if (loading) return <p className="container" style={{ padding: '2rem' }}>Loading...</p>;
+  if (loading) return <p className="container loading-text">Loading...</p>;
 
   return (
     <div className="container">
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        marginBottom: '1rem'
-      }}>
+      <div className="header-section">
         <h2 className="gradient-heading" style={{ fontSize: '2.2rem' }}>Edit Job</h2>
         <LogoutButton />
       </div>
 
-      <form onSubmit={handleSubmit} style={{
-        maxWidth: '500px',
-        marginTop: '1.5rem',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '1rem'
-      }}>
+      <form onSubmit={handleSubmit} className="form-container">
         <input
           type="text"
           name="title"

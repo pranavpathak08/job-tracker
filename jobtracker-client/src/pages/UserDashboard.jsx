@@ -3,6 +3,8 @@ import axios from 'axios';
 import LogoutButton from '../components/LogoutButton';
 import { useNavigate } from 'react-router-dom';
 import { FaUserCircle, FaBuilding } from 'react-icons/fa';
+import '../styles/common.css';
+import '../styles/Dashboard.css';
 
 function UserDashboard() {
   const [jobs, setJobs] = useState([]);
@@ -15,7 +17,6 @@ function UserDashboard() {
       const token = localStorage.getItem('token');
 
       try {
-        // ✅ Fetch fresh user profile from server
         const userRes = await axios.get('http://localhost:5000/api/profile', {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -23,7 +24,6 @@ function UserDashboard() {
         });
         setUser(userRes.data.user);
 
-        // Jobs
         const jobRes = await axios.get('http://localhost:5000/api/jobs', {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -31,7 +31,6 @@ function UserDashboard() {
         });
         setJobs(jobRes.data.jobs);
 
-        // Applications
         const appRes = await axios.get('http://localhost:5000/api/my-applications', {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -76,110 +75,53 @@ function UserDashboard() {
     return application ? application.status : null;
   };
 
-  const button = {
-    padding: '0.4rem 0.9rem',
-    fontSize: '0.9rem',
-    backgroundColor: '#1f2937',
-    color: '#f1f1f1',
-    border: '1px solid #4b5563',
-    borderRadius: '6px',
-    cursor: 'pointer',
-  };
-
-  const statusLabel = {
-    padding: '0.3rem 0.7rem',
-    backgroundColor: '#2f855a',
-    color: '#f1f1f1',
-    borderRadius: '5px',
-    fontWeight: 'bold',
-    fontSize: '0.85rem',
-  };
-
   return (
-    <div style={{ display: 'flex', padding: '2rem', gap: '2rem' }}>
-      {/* USER PROFILE CARD */}
+    <div className="user-dashboard-container">
       {user && (
-        <div
-          style={{
-            flex: '0 0 300px',
-            backgroundColor: '#1f2937',
-            color: '#fff',
-            padding: '2rem',
-            borderRadius: '1rem',
-            marginTop: '1rem',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-            height: '400px',
-            overflow: 'auto', 
-          }}
-        >
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem' }}>
+        <div className="user-profile-card">
+          <div className="user-profile-header">
             <FaUserCircle size={80} />
             <h2>{user.name}</h2>
-            <p style={{ textAlign: 'center' }}>
+            <p>
               {user.currentlyDoing || 'Not specified'} at {user.company || 'No Company'}
             </p>
-            <p style={{ color: '#d1d5db' }}>{user.place || 'Unknown Location'}</p>
+            <p className="user-profile-location">{user.place || 'Unknown Location'}</p>
             {user.company && (
-              <p style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#9ca3af' }}>
+              <p className="user-profile-company">
                 <FaBuilding /> {user.company}
               </p>
             )}
           </div>
-          <button style={{ width: '100%' }} onClick={() => navigate('/profile')}>
+          <button onClick={() => navigate('/profile')}>
             View Profile
           </button>
         </div>
       )}
 
-      {/* JOBS LIST */}
-      <div style={{ flex: 1 }}>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-            marginBottom: '1rem',
-          }}
-        >
-          <h2 style={{ fontSize: '2.5rem' }}>
+      <div className="user-dashboard-jobs">
+        <div className="header-section">
+          <h2 className="dashboard-heading">
             <span className="gradient-heading">Welcome, </span> {user?.name}
           </h2>
           <LogoutButton />
         </div>
 
-        <h3 style={{ marginTop: '2rem' }}>Available Jobs</h3>
+        <h3 className="dashboard-section-title">Available Jobs</h3>
 
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '1.5rem',
-            marginTop: '1rem',
-          }}
-        >
+        <div className="card-grid">
           {jobs.map((job) => {
             const status = getApplicationStatus(job.id);
             return (
-              <div
-                key={job.id}
-                style={{
-                  backgroundColor: '#2b2b3c',
-                  padding: '1.5rem',
-                  borderRadius: '10px',
-                  flex: '1 1 300px',
-                  boxShadow: '0 0 10px rgba(0,0,0,0.4)',
-                }}
-              >
-                <h4 style={{ color: '#a78bfa' }}>{job.title}</h4>
+              <div key={job.id} className="card">
+                <h4>{job.title}</h4>
                 <p><strong>Company:</strong> {job.company}</p>
                 <p><strong>Deadline:</strong> {job.deadline?.split('T')[0] || 'N/A'}</p>
 
                 <div style={{ marginTop: '1rem' }}>
                   {status ? (
-                    <span style={statusLabel}>Status: {status}</span>
+                    <span className="status-label">Status: {status}</span>
                   ) : (
-                    <button style={button} onClick={() => applyToJob(job.id)}>
+                    <button className="button" onClick={() => applyToJob(job.id)}>
                       Apply
                     </button>
                   )}

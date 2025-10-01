@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import LogoutButton from '../components/LogoutButton';
+import '../styles/common.css';
 
 function CreateJob() {
   const [form, setForm] = useState({
@@ -40,27 +41,12 @@ function CreateJob() {
 
   return (
     <div className="container">
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        marginBottom: '1rem'
-      }}>
+      <div className="header-section">
         <h2 className="gradient-heading" style={{ fontSize: '2.2rem' }}>Create a New Job</h2>
         <LogoutButton />
       </div>
 
-      <form
-        onSubmit={handleCreate}
-        style={{
-          maxWidth: '500px',
-          marginTop: '1.5rem',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '1rem',
-        }}
-      >
+      <form onSubmit={handleCreate} className="form-container">
         <input
           type="text"
           name="title"

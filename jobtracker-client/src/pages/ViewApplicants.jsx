@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import LogoutButton from '../components/LogoutButton';
+import '../styles/common.css';
+import '../styles/ViewApplicants.css';
 
 function ViewApplicants() {
   const { jobId } = useParams();
@@ -34,7 +36,7 @@ function ViewApplicants() {
           },
         }
       );
-      fetchApplicants(); // Refresh
+      fetchApplicants();
     } catch (err) {
       console.error('Error updating status:', err);
     }
@@ -45,30 +47,23 @@ function ViewApplicants() {
   }, [jobId]);
 
   return (
-    <div className="container" style={{ padding: '2rem' }}>
-    {/* 🧭 Top row: heading + logout aligned using flex */}
-    <div style={{
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      flexWrap: 'wrap',
-      marginBottom: '1.5rem'
-    }}>
-      <div>
-        <h2 style={{ marginBottom: '0.3rem' }}>
-          Applicants for: <span style={{ color: '#a78bfa' }}>{state?.jobTitle}</span>
-        </h2>
-        <h4 style={{ margin: 0, fontWeight: 'normal', color: '#ccc' }}>
-          Company: {state?.company} | Job ID: {jobId}
-        </h4>
+    <div className="applicants-container">
+      <div className="applicants-header">
+        <div>
+          <h2>
+            Applicants for: <span className="applicants-job-title">{state?.jobTitle}</span>
+          </h2>
+          <h4>
+            Company: {state?.company} | Job ID: {jobId}
+          </h4>
+        </div>
+        <LogoutButton />
       </div>
-      <LogoutButton />
-    </div>
 
       {applicants.length === 0 ? (
         <p>No applicants found.</p>
       ) : (
-        <table>
+        <table className="applicants-table">
           <thead>
             <tr>
               <th>User ID</th>

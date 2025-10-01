@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import LogoutButton from '../components/LogoutButton';
 import { useNavigate } from 'react-router-dom';
+import '../styles/common.css';
+import '../styles/Profile.css';
 
 function UserProfile() {
   const [user, setUser] = useState(null);
@@ -25,50 +27,26 @@ function UserProfile() {
     fetchProfile();
   }, []);
 
-  const button = {
-    padding: '0.4rem 0.9rem',
-    fontSize: '0.9rem',
-    backgroundColor: '#1f2937',
-    color: '#f1f1f1',
-    border: '1px solid #4b5563',
-    borderRadius: '6px',
-    cursor: 'pointer',
-  };
-
-  if (!user) return <p style={{ padding: '2rem' }}>Loading profile...</p>;
+  if (!user) return <p className="loading-text">Loading profile...</p>;
 
   return (
-    <div className="container" style={{ padding: '2rem' }}>
-      {/* Header with buttons */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        marginBottom: '1.5rem',
-      }}>
-        <h2 className="gradient-heading" style={{ fontSize: '2rem' }}>
+    <div className="profile-container">
+      <div className="header-section">
+        <h2 className="gradient-heading profile-heading">
           User Profile
         </h2>
-        <div style={{ display: 'flex', gap: '0.75rem' }}>
-          <button style={button} onClick={() => navigate('/dashboard')}>
+        <div className="button-group">
+          <button className="button" onClick={() => navigate('/dashboard')}>
             ⬅️ Back to Dashboard
           </button>
-          <button style={button} onClick={() => navigate('/edit-profile')}>
+          <button className="button" onClick={() => navigate('/edit-profile')}>
             ✏️ Edit Profile
           </button>
           <LogoutButton />
         </div>
       </div>
 
-      {/* Profile card */}
-      <div style={{
-        backgroundColor: '#2b2b3c',
-        padding: '1.5rem',
-        borderRadius: '10px',
-        boxShadow: '0 0 10px rgba(0,0,0,0.4)',
-        maxWidth: '700px'
-      }}>
+      <div className="profile-card">
         <p><strong>Name:</strong> {user.name}</p>
         <p><strong>Email:</strong> {user.email}</p>
         <p><strong>Currently Doing:</strong> {user.currentlyDoing || '—'}</p>
@@ -77,7 +55,6 @@ function UserProfile() {
         <p><strong>Joined On:</strong> {user.createdAt?.split('T')[0]}</p>
         <p><strong>Location:</strong> {user.place || '—'}</p>
         <p><strong>Company/University:</strong> {user.company || '—'}</p>
-
       </div>
     </div>
   );

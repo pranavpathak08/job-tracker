@@ -1,0 +1,64 @@
+/* Dashboard styles (Admin & User) */
+
+.dashboard-heading {
+    font-size: 2.5rem;
+  }
+  
+  .dashboard-section-title {
+    margin-top: 2rem;
+  }
+  
+  /* User Dashboard specific styles */
+  .user-dashboard-container {
+    display: flex;
+    padding: 2rem;
+    gap: 2rem;
+  }
+  
+  .user-profile-card {
+    flex: 0 0 300px;
+    background-color: #1f2937;
+    color: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-top: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    height: 400px;
+    overflow: auto;
+  }
+  
+  .user-profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .user-profile-header h2 {
+    margin: 0;
+  }
+  
+  .user-profile-header p {
+    text-align: center;
+    margin: 0;
+  }
+  
+  .user-profile-location {
+    color: #d1d5db;
+  }
+  
+  .user-profile-company {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #9ca3af;
+  }
+  
+  .user-profile-card button {
+    width: 100%;
+  }
+  
+  .user-dashboard-jobs {
+    flex: 1;
+  }
