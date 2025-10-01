@@ -3,6 +3,7 @@ import axios from 'axios';
 import LogoutButton from '../components/LogoutButton';
 import { useNavigate } from 'react-router-dom';
 import { FaUserCircle, FaBuilding } from 'react-icons/fa';
+import JobApplicationModal from '../components/JobApplicationModal';
 import '../styles/common.css';
 import '../styles/Dashboard.css';
 
@@ -10,6 +11,8 @@ function UserDashboard() {
   const [jobs, setJobs] = useState([]);
   const [applications, setApplications] = useState([]);
   const [user, setUser] = useState(null);
+  const [selectedJob, setSelectedJob] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -45,35 +48,30 @@ function UserDashboard() {
     fetchData();
   }, []);
 
-  const applyToJob = async (jobId) => {
-    const token = localStorage.getItem('token');
-    try {
-      const res = await axios.post(
-        `http://localhost:5000/api/apply/${jobId}`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      alert(res.data.message);
+  const refreshApplications = async () => {
+    const token = localStorage.getItem("token");
+    const appRes = await axios.get("http://localhost:5000/api/my-applications", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    setApplications(appRes.data.applications);
+  }
 
-      const appRes = await axios.get('http://localhost:5000/api/my-applications', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setApplications(appRes.data.applications);
-    } catch (err) {
-      alert(err.response?.data?.message || 'Error applying to job');
-    }
-  };
+  const openModal = (job) => {
+    setSelectedJob(job);
+    setIsModalOpen(true);
+  }
+
+  const closeModal = () => {
+    setSelectedJob(null);
+    setIsModalOpen(false);
+  }
 
   const getApplicationStatus = (jobId) => {
     const application = applications.find((app) => app.jobId === jobId);
     return application ? application.status : null;
-  };
+  }
 
   return (
     <div className="user-dashboard-container">
@@ -83,18 +81,19 @@ function UserDashboard() {
             <FaUserCircle size={80} />
             <h2>{user.name}</h2>
             <p>
-              {user.currentlyDoing || 'Not specified'} at {user.company || 'No Company'}
+              {user.currentlyDoing || "Not specified"} at{" "}
+              {user.company || "No Company"}
             </p>
-            <p className="user-profile-location">{user.place || 'Unknown Location'}</p>
+            <p className="user-profile-location">
+              {user.place || "Unknown Location"}
+            </p>
             {user.company && (
               <p className="user-profile-company">
                 <FaBuilding /> {user.company}
               </p>
             )}
           </div>
-          <button onClick={() => navigate('/profile')}>
-            View Profile
-          </button>
+          <button onClick={() => navigate("/profile")}>View Profile</button>
         </div>
       )}
 
@@ -114,14 +113,19 @@ function UserDashboard() {
             return (
               <div key={job.id} className="card">
                 <h4>{job.title}</h4>
-                <p><strong>Company:</strong> {job.company}</p>
-                <p><strong>Deadline:</strong> {job.deadline?.split('T')[0] || 'N/A'}</p>
+                <p>
+                  <strong>Company:</strong> {job.company}
+                </p>
+                <p>
+                  <strong>Deadline:</strong>{" "}
+                  {job.deadline?.split("T")[0] || "N/A"}
+                </p>
 
-                <div style={{ marginTop: '1rem' }}>
+                <div style={{ marginTop: "1rem" }}>
                   {status ? (
                     <span className="status-label">Status: {status}</span>
                   ) : (
-                    <button className="button" onClick={() => applyToJob(job.id)}>
+                    <button className="button" onClick={() => openModal(job)}>
                       Apply
                     </button>
                   )}
@@ -131,8 +135,19 @@ function UserDashboard() {
           })}
         </div>
       </div>
+
+      <JobApplicationModal
+        job={selectedJob}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        onApplied={refreshApplications}
+      />
+
+          
+
+
     </div>
-  );
+  )
 }
 
 export default UserDashboard;
