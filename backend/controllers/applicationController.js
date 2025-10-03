@@ -149,4 +149,5 @@ exports.updateApplicationStatus = async (req, res) => {
     console.error('❌ Error updating status:', err);
     res.status(500).json({ message: 'Server error while updating status' });
   }
+  
 };
