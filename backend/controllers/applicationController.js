@@ -65,7 +65,8 @@ exports.getMyApplications = async (req, res) => {
             j.company,
             j.deadline,
             a.status,
-            a.appliedAt
+            a.appliedAt,
+            a.resumePath
           FROM Applications a
           JOIN Jobs j ON a.jobId = j.id
           WHERE a.userId = @userId
@@ -149,5 +150,5 @@ exports.updateApplicationStatus = async (req, res) => {
     console.error('❌ Error updating status:', err);
     res.status(500).json({ message: 'Server error while updating status' });
   }
-  
+
 };
