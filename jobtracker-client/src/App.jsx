@@ -11,6 +11,7 @@ import UserProfile from './pages/UserProfile';
 import Home from './pages/Home';
 import ViewApplicants from './pages/ViewApplicants';
 import EditProfile from './pages/EditProfile';
+import MyApplications from './pages/MyApplications'
 
 function App() {
   return (
@@ -59,7 +60,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-
+        <Route path="/my-applications" element={<MyApplications />} />
       </Routes>
     </BrowserRouter>
   );

@@ -94,6 +94,9 @@ function UserDashboard() {
             )}
           </div>
           <button onClick={() => navigate("/profile")}>View Profile</button>
+          <button className="button" onClick={() => navigate('/my-applications')}>
+            View My Applications
+          </button>
         </div>
       )}
 
@@ -142,10 +145,6 @@ function UserDashboard() {
         onClose={closeModal}
         onApplied={refreshApplications}
       />
-
-          
-
-
     </div>
   )
 }
