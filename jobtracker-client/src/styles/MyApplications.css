@@ -1,0 +1,209 @@
+/* MyApplications.css */
+
+.my-applications-container {
+    padding: 2rem;
+  }
+  
+  /* Empty State */
+  .empty-state {
+    text-align: center;
+    padding: 3rem;
+    background-color: #2b2b3c;
+    border-radius: 10px;
+    margin-top: 2rem;
+  }
+  
+  .empty-state-message {
+    font-size: 1.2rem;
+    color: #9ca3af;
+    margin-bottom: 1rem;
+  }
+  
+  /* Table Wrapper */
+  .table-wrapper {
+    overflow-x: auto;
+    margin-top: 2rem;
+    background-color: #2b2b3c;
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  
+  /* Applications Table */
+  .applications-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+  }
+  
+  .applications-table thead tr {
+    border-bottom: 2px solid #4b5563;
+  }
+  
+  .applications-table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: bold;
+    color: #a78bfa;
+    font-size: 0.95rem;
+  }
+  
+  .applications-table th.text-center {
+    text-align: center;
+  }
+  
+  .applications-table tbody .table-row {
+    border-bottom: 1px solid #374151;
+    transition: background-color 0.2s ease;
+  }
+  
+  .applications-table tbody .table-row:hover {
+    background-color: #1f2937;
+  }
+  
+  .applications-table td {
+    padding: 1rem;
+    color: #d1d5db;
+  }
+  
+  .applications-table td.text-center {
+    text-align: center;
+  }
+  
+  /* Job Title Column */
+  .job-title {
+    color: #f1f1f1 !important;
+    font-weight: 500;
+  }
+  
+  /* Company Name Column */
+  .company-name {
+    color: #d1d5db;
+  }
+  
+  /* Deadline Column */
+  .deadline {
+    color: #d1d5db;
+  }
+  
+  /* Applied Date Column */
+  .applied-date {
+    color: #d1d5db;
+  }
+  
+  /* Status Badges */
+  .status-badge {
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    display: inline-block;
+    border: 1px solid;
+  }
+  
+  .status-applied {
+    background-color: rgba(59, 130, 246, 0.2);
+    color: #3b82f6;
+    border-color: #3b82f6;
+  }
+  
+  .status-interviewing {
+    background-color: rgba(245, 158, 11, 0.2);
+    color: #f59e0b;
+    border-color: #f59e0b;
+  }
+  
+  .status-offered {
+    background-color: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+    border-color: #10b981;
+  }
+  
+  .status-rejected {
+    background-color: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    border-color: #ef4444;
+  }
+  
+  .status-default {
+    background-color: rgba(107, 114, 128, 0.2);
+    color: #6b7280;
+    border-color: #6b7280;
+  }
+  
+  /* Resume Link */
+  .resume-link {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    background-color: #4f46e5;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.2s ease;
+  }
+  
+  .resume-link:hover {
+    background-color: #4338ca;
+  }
+  
+  .no-resume {
+    color: #9ca3af;
+    font-size: 0.9rem;
+  }
+  
+  /* Summary Section */
+  .summary-section {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: #1f2937;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .summary-card {
+    text-align: center;
+    min-width: 150px;
+  }
+  
+  .summary-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #a78bfa;
+    margin: 0 0 0.5rem 0;
+  }
+  
+  .summary-number.summary-offered {
+    color: #10b981;
+  }
+  
+  .summary-number.summary-interviewing {
+    color: #f59e0b;
+  }
+  
+  .summary-number.summary-applied {
+    color: #3b82f6;
+  }
+  
+  .summary-label {
+    color: #9ca3af;
+    margin: 0;
+    font-size: 0.95rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .my-applications-container {
+      padding: 1rem;
+    }
+  
+    .summary-section {
+      flex-direction: column;
+    }
+  
+    .summary-card {
+      padding: 1rem 0;
+    }
+  }

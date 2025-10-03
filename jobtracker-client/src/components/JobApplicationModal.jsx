@@ -34,7 +34,7 @@ export default function JobApplicationModal({ job, isOpen, onClose, onApplied })
             onApplied();
             onClose();
         } catch (err) {
-            alert(err.resposne?.data?.message || "Error applying to job");
+            alert(err.response?.data?.message || "Error applying to job");
             
         } finally {
             setUploading(false);
