@@ -1,0 +1,72 @@
+/* SavedJobs.css */
+
+.saved-jobs-container {
+    padding: 2rem;
+  }
+  
+  .saved-job-card {
+    position: relative;
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card-header h4 {
+    margin: 0;
+    flex: 1;
+  }
+  
+  .unsave-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.3rem;
+    color: #f59e0b;
+    padding: 0;
+    transition: all 0.2s ease;
+  }
+  
+  .unsave-btn:hover {
+    color: #ef4444;
+    transform: scale(1.1);
+  }
+  
+  .job-notes {
+    font-size: 0.9rem;
+    color: #9ca3af;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background-color: #1f2937;
+    border-radius: 5px;
+    border-left: 3px solid #a78bfa;
+  }
+  
+  .empty-state {
+    text-align: center;
+    padding: 3rem;
+    background-color: #2b2b3c;
+    border-radius: 10px;
+    margin-top: 2rem;
+  }
+  
+  .empty-state-message {
+    font-size: 1.2rem;
+    color: #9ca3af;
+    margin-bottom: 1rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .saved-jobs-container {
+      padding: 1rem;
+    }
+  
+    .card-header {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
