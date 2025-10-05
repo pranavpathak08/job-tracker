@@ -4,6 +4,7 @@ import LogoutButton from '../components/LogoutButton';
 import { useNavigate } from 'react-router-dom';
 import { FaUserCircle, FaBuilding, FaBookmark, FaRegBookmark } from 'react-icons/fa';
 import JobApplicationModal from '../components/JobApplicationModal';
+import JobNews from '../components/JobNews';
 import '../styles/common.css';
 import '../styles/Dashboard.css';
 
@@ -100,33 +101,48 @@ function UserDashboard() {
 
   return (
     <div className="user-dashboard-container">
-      {user && (
-        <div className="user-profile-card">
-          <div className="user-profile-header">
-            <FaUserCircle size={80} />
-            <h2>{user.name}</h2>
-            <p>
-              {user.currentlyDoing || "Not specified"} at{" "}
-              {user.company || "No Company"}
-            </p>
-            <p className="user-profile-location">
-              {user.place || "Unknown Location"}
-            </p>
-            {user.company && (
-              <p className="user-profile-company">
-                <FaBuilding /> {user.company}
+      <div className="sidebar-section">
+        {user && (
+          <div className="user-profile-card">
+            <div className="user-profile-header">
+              <FaUserCircle size={80} />
+              <h2>{user.name}</h2>
+              <p>
+                {user.currentlyDoing || "Not specified"} at{" "}
+                {user.company || "No Company"}
               </p>
-            )}
+              <p className="user-profile-location">
+                {user.place || "Unknown Location"}
+              </p>
+              {user.company && (
+                <p className="user-profile-company">
+                  <FaBuilding /> {user.company}
+                </p>
+              )}
+            </div>
+            <button onClick={() => navigate("/profile")}>View Profile</button>
           </div>
-          <button onClick={() => navigate("/profile")}>View Profile</button>
-          <button className="button" onClick={() => navigate('/my-applications')}>
-            View My Applications
+        )}
+
+        {/* Buttons Below Profile Card */}
+        <div className="quick-actions">
+          <button 
+            className="action-button" 
+            onClick={() => navigate('/my-applications')}
+          >
+            📋 My Applications
+            <span className="badge">{applications.length}</span>
           </button>
-          <button className="button" onClick={() => navigate('/saved-jobs')}>
-            Saved Jobs ({savedJobs.length})
+          <button 
+            className="action-button" 
+            onClick={() => navigate('/saved-jobs')}
+          >
+            🔖 Saved Jobs
+            <span className="badge">{savedJobs.length}</span>
           </button>
         </div>
-      )}
+        <JobNews />
+      </div>
 
       <div className="user-dashboard-jobs">
         <div className="header-section">
