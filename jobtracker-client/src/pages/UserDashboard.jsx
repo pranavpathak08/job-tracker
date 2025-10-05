@@ -4,13 +4,14 @@ import LogoutButton from '../components/LogoutButton';
 import { useNavigate } from 'react-router-dom';
 import { FaUserCircle, FaBuilding, FaBookmark, FaRegBookmark } from 'react-icons/fa';
 import JobApplicationModal from '../components/JobApplicationModal';
+import JobNews from '../components/JobNews';
 import '../styles/common.css';
 import '../styles/Dashboard.css';
 
 function UserDashboard() {
   const [jobs, setJobs] = useState([]);
   const [applications, setApplications] = useState([]);
-  const [savedJobs, setSavedJobs] = useState([]); // Track saved job IDs
+  const [savedJobs, setSavedJobs] = useState([]);
   const [user, setUser] = useState(null);
   const [selectedJob, setSelectedJob] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,25 +22,21 @@ function UserDashboard() {
       const token = localStorage.getItem('token');
 
       try {
-        // Fetch user profile
         const userRes = await axios.get('http://localhost:5000/api/profile', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(userRes.data.user);
 
-        // Fetch all jobs
         const jobRes = await axios.get('http://localhost:5000/api/jobs', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setJobs(jobRes.data.jobs);
 
-        // Fetch user's applications
         const appRes = await axios.get('http://localhost:5000/api/my-applications', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setApplications(appRes.data.applications);
 
-        // Fetch saved jobs
         const savedRes = await axios.get('http://localhost:5000/api/saved-jobs', {
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -65,13 +62,11 @@ function UserDashboard() {
     const token = localStorage.getItem("token");
     try {
       if (savedJobs.includes(jobId)) {
-        // Unsave
         await axios.delete(`http://localhost:5000/api/unsave-job/${jobId}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setSavedJobs(savedJobs.filter(id => id !== jobId));
       } else {
-        // Save
         await axios.post(`http://localhost:5000/api/save-job/${jobId}`, {}, {
           headers: { Authorization: `Bearer ${token}` }
         });
@@ -129,17 +124,20 @@ function UserDashboard() {
             className="action-button" 
             onClick={() => navigate('/my-applications')}
           >
-            My Applications
+            📋 My Applications
             <span className="badge">{applications.length}</span>
           </button>
           <button 
             className="action-button" 
             onClick={() => navigate('/saved-jobs')}
           >
-            Saved Jobs
+            🔖 Saved Jobs
             <span className="badge">{savedJobs.length}</span>
           </button>
         </div>
+        
+        {/* Job Market News */}
+        <JobNews />
       </div>
 
       <div className="user-dashboard-jobs">

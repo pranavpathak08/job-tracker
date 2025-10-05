@@ -1,0 +1,134 @@
+/* JobNews.css */
+
+.job-news-container {
+    background-color: #2b2b3c;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-height: 500px;
+    overflow-y: auto;
+    width: 100%;
+  }
+  
+  .news-title {
+    margin: 0 0 0.75rem 0;
+    color: #a78bfa;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .news-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.6rem;
+    background-color: #1f2937;
+    border-radius: 6px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
+  
+  .news-item:hover {
+    background-color: #374151;
+    border-color: #a78bfa;
+    transform: translateX(5px);
+  }
+  
+  .news-content {
+    flex: 1;
+  }
+  
+  .news-headline {
+    margin: 0 0 0.3rem 0;
+    font-size: 0.8rem;
+    color: #f1f1f1;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .news-source {
+    margin: 0;
+    font-size: 0.7rem;
+    color: #9ca3af;
+  }
+  
+  .news-thumbnail {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+  
+  .refresh-button {
+    width: 100%;
+    padding: 0.6rem;
+    background-color: #4f46e5;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .refresh-button:hover {
+    background-color: #4338ca;
+  }
+  
+  .loading-text,
+  .error-text {
+    text-align: center;
+    color: #9ca3af;
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .error-text {
+    color: #f87171;
+  }
+  
+  /* Scrollbar Styling */
+  .job-news-container::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .job-news-container::-webkit-scrollbar-track {
+    background: #1f2937;
+    border-radius: 10px;
+  }
+  
+  .job-news-container::-webkit-scrollbar-thumb {
+    background: #4b5563;
+    border-radius: 10px;
+  }
+  
+  .job-news-container::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 640px) {
+    .news-thumbnail {
+      width: 60px;
+      height: 60px;
+    }
+  
+    .news-headline {
+      font-size: 0.85rem;
+    }
+  }
