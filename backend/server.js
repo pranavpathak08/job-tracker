@@ -8,6 +8,7 @@ const authRoutes = require('./routes/authRoutes');
 const jobRoutes = require('./routes/jobRoutes');
 const applicationRoutes = require('./routes/applicationRoutes');
 const userRoutes = require('./routes/userRoutes');
+const savedJobsRoutes = require('./routes/savedJobsRoutes');
 // const testRoutes = require('./routes/testRoutes');
 
 app.use(express.json());
@@ -19,6 +20,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/jobs', jobRoutes);
 app.use('/api', applicationRoutes);
 app.use('/api', userRoutes);
+app.use('/api', savedJobsRoutes);
 // app.use('/api/test', testRoutes);
 
 app.get('/', async (req, res) => {

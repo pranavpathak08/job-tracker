@@ -7,6 +7,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import CreateJob from './pages/CreateJob';
 import EditJob from './pages/EditJob';
+import SavedJobs from './pages/SavedJobs';
 import UserProfile from './pages/UserProfile';
 import Home from './pages/Home';
 import ViewApplicants from './pages/ViewApplicants';
@@ -44,6 +45,15 @@ function App() {
         <Route path="/create-job" element={<ProtectedRoute><CreateJob /></ProtectedRoute>} />
         <Route path="/job/:jobId/applicants" element={<ProtectedRoute><ViewApplicants /></ProtectedRoute>} />
         <Route path="/edit-job/:jobId" element={<ProtectedRoute><EditJob /></ProtectedRoute>} />
+        <Route 
+          path="/saved-jobs" 
+          element={
+            <ProtectedRoute allowedRoles={['user']}>
+              <SavedJobs />
+            </ProtectedRoute>
+          } 
+        />
+
         <Route
           path="/profile"
           element={
